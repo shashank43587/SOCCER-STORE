@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-image: url(../image/wallpaperflare.com_wallpaper.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+
+        #maindiv {
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 50%;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            transition: transform 0.3s;
+        }
+
+        #maindiv:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: calc(100% - 10px);
+            height: 40px;
+            padding: 5px;
+            margin: 5px 0 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #5cb85c;
+            outline: none;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #4cae4c;
+            transform: scale(1.05);
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        #zz {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+/* Header Section */
+#a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+}
+
+#a1 img {
+    height: 60px;
+}
+
+#a2 {
+    display: flex;
+    gap: 20px;
+}
+
+#a2 div a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+#a2 div a:hover {
+    background-color: #ff6347;
+}
+        
+    </style>
+</head>
+<header>
+    <div id="zz">
+        
+        <div id="a">
+            <div id="a1">
+                <img src="logo.jpg" alt="logo">
+            </div>
+            <div id="a2">
+                <div id="a21"><a href="index.html">Home</a></div>
+                <div id="a22"><a href="jersey.html">Jersey</a></div>
+                <div id="a23"><a href="ball.html">Football</a></div>
+                <div id="a24"><a href="accessories.html">Accessories</a></div>
+                <div id="a25"><a href="aboutus.html">About Us</a></div>
+                
+            </div>
+        </div>
+    </div>
+</header>
+<body>
+    <div id="maindiv">
+        <form onsubmit="return validateForm()" name="myform">
+            <h2>Registration Form</h2>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+            <span class="error" id="nameerror"></span>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+            <span class="error" id="emailerror"></span>
+
+            <label for="productName">Product Name</label>
+            <input type="text" name="productName" id="productName" required>
+            <span class="error" id="productNameError"></span>
+
+            <label for="gender">Gender</label>
+            <input type="radio" name="gender" value="male" id="male" required> Male
+            <input type="radio" name="gender" value="female" id="female" required> Female
+            <span class="error" id="gendererror"></span>
+
+            <label for="bio">Bio</label>
+            <textarea name="bio" id="bio" cols="30" rows="5" required></textarea>
+            <span class="error" id="textareaerror"></span>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Clear previous error messages
+            document.querySelectorAll('.error').forEach(el => el.innerText = "");
+
+            // Validate Name
+            if (document.getElementById('name').value.trim() === "") {
+                document.getElementById('nameerror').innerText = "Name can't be empty";
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailerror').innerText = "Enter a valid email";
+                isValid = false;
+            }
+
+            // Validate Product Name
+            if (document.getElementById('productName').value.trim() === "") {
+                document.getElementById('productNameError').innerText = "Product Name can't be empty";
+                isValid = false;
+            }
+
+            // Validate Gender
+            if (!document.querySelector('input[name="gender"]:checked')) {
+                document.getElementById('gendererror').innerText = "Select your gender";
+                isValid = false;
+            }
+
+            // Validate Bio
+            if (document.getElementById('bio').value.trim() === "") {
+                document.getElementById('textareaerror').innerText = "Bio can't be empty";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
